@@ -10,6 +10,16 @@ library(STRINGdb)
 
 ##### Load data ######
 
+# The data should look like this:
+#   
+# "Fold Change" "Protein"
+# -0.183573188821206 "CFH"
+# -0.343354626391733 "LAP3"
+# 0.00208804898995268 "CD99"
+# 0.18907687195824 "LASP1"
+# -0.0544593019700627 "AK2"
+
+
 ### Insert the path to the folder (it will be use for loading and saving all the files)
 folder= getwd()
 
