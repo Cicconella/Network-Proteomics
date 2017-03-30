@@ -2,43 +2,39 @@
 ##### Load expression information ######
 
 ### Insert the path to the folder (it will be use for loading and saving all the files)
-folder= "/media/cicconella/8AA6013CA6012A71/Documents and Settings/Nina/Dropbox/metaanalysis/new/" 
-
-folder= "/media/cicconella/8AA6013CA6012A71/Documents and Settings/Nina/Dropbox/metaanalysis/new/" 
+folder= getwd() 
 
 ### Preparing files for analises
-expP = read.table(paste(folder, "General_parameters_1D25.txt", sep = ""), header = T, sep = ",")
+expP = read.table(paste(folder, "/genParameterProt", sep = ""), header = T)
 head(expP)
 dim(expP)
 summary(expP)
 
 
-a = sample(c(1:dim(expP)[1]))[1:100]
-
-
-a = expP[a,]
-
-summary(a)
-
-write.table(a, "genParameterProt", row.names = F)
-
 ### Load diferential expression genes from transcripts data
-expT = read.table(paste(folder ,"General_parameters_20160302_LundData_transcriptomics_freeze_exons.txt", sep = ""), header = T, sep = ",")
+expT = read.table(paste(folder ,"/genParameterTrans", sep = ""), header = T)
 head(expT)
 dim(expT)
-
-head(expP)
-head(expT)
-
-
+summary(expT)
+###Check the header of both before doing that
+colnames(expT) = colnames(expP)
 
 
+# Get the genes from the both groups
+allGenes = c(as.character(expP[expP$adj.p<0.05,7]),as.character(expT[expT$adj.p<0.05,7]))
+allGenes = unique(allGenes)
+allGenes = as.data.frame(allGenes)
+dim(allGenes)
 
-a = expP[,c(2,7)]
-b = expT[,c(2,7)]
+prot = expP[which(expP$gene %in% allGenes[,1]),]
+trans = expT[which(expT$gene %in% allGenes[,1]),] 
 
-head(a)
-head(b)
+a = prot[,c(2,7)]
+b = trans[,c(2,7)]
 
 colnames(a) = c("Fold Change", "Protein")
 colnames(b) = c("Fold Change", "Protein")
+
+write.table(a, "Proteomics-output")
+write.table(b, "Transcripts-output")
+
