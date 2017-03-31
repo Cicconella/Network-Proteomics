@@ -6,7 +6,7 @@ This directory contains two R scripts:
 
 It will create a network of genes based on StringDB (http://string-db.org/) information. The input is two files containing  two columns (Fold Change and Gene). As the example:
 ```
-"Fold Change" "Protein"
+"Fold Change" "Gene"
 -0.18 "CFH"
 -0.34 "LAP3"
 0.00 "CD99"
