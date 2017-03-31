@@ -12,7 +12,7 @@ library(STRINGdb)
 
 # The data should look like this:
 #   
-# "Fold Change" "Protein"
+# "Fold Change" "Gene"
 # -0.183573188821206 "CFH"
 # -0.343354626391733 "LAP3"
 # 0.00208804898995268 "CD99"
@@ -31,8 +31,8 @@ head(a)
 b = read.table("Transcripts", header = T)
 head(b)
 
-colnames(a) = c("Fold Change", "Protein")
-colnames(b) = c("Fold Change", "Protein")
+colnames(a) = c("Fold Change", "Gene")
+colnames(b) = c("Fold Change", "Gene")
 
 dim(a)
 dim(b)

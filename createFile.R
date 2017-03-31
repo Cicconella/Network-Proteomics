@@ -32,8 +32,8 @@ trans = expT[which(expT$gene %in% allGenes[,1]),]
 a = prot[,c(2,7)]
 b = trans[,c(2,7)]
 
-colnames(a) = c("Fold Change", "Protein")
-colnames(b) = c("Fold Change", "Protein")
+colnames(a) = c("Fold Change", "Gene")
+colnames(b) = c("Fold Change", "Gene")
 
 write.table(a, "Proteomics-output")
 write.table(b, "Transcripts-output")
